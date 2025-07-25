@@ -3,12 +3,11 @@
       const username = document.getElementById("username").value.trim();
       if (!username) return alert("Please enter a username");
 
-      // Clear previous results
       document.getElementById("profile").innerHTML = "";
       document.getElementById("repos").innerHTML = "";
 
       try {
-        // Fetch profile
+        // profile lane ke liye
         const userRes = await fetch(`https://api.github.com/users/${username}`);
         if (!userRes.ok) throw new Error("User not found");
         const userData = await userRes.json();
@@ -21,7 +20,7 @@
           <p><a href="${userData.html_url}" target="_blank">View Profile</a></p>
         `;
 
-        // Fetch repositories
+        // repo
         const reposRes = await fetch(userData.repos_url);
         const repos = await reposRes.json();
 
